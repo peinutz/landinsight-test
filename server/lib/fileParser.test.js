@@ -63,7 +63,7 @@ test("Parses price file correctly", () => {
             x: 99,
             y: 99,
             price: 10000
-        },
+        }
     ];
 
     expect(parsePriceData(testData)).toStrictEqual(expected);

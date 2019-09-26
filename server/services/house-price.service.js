@@ -17,7 +17,6 @@ const priceServiceFactory = (dependencies) => async (filePath) => {
         console.log(err);
         throw new Error(err);
     }
-
 }
 
 const housePriceService = priceServiceFactory({
