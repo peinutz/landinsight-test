@@ -6,8 +6,6 @@ const loadPriceFile = (filepath) => {
         fs.readFile(filepath, "utf8", (err, data) => {
             if (err) reject(err);
 
-            if (data.length <= 0) reject("Empty file");
-
             resolve(data);
         });
     });
