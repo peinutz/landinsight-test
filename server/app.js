@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const {
     housePriceService
 } = require("./services/house-price.service");
@@ -13,9 +14,10 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/hello/", async (req, res, next) => {
+app.get("/getHousePrices", async (req, res, next) => {
     try {
         const housePrices = await housePriceService(FILE_PATH);
         res.status(200).json(housePrices);

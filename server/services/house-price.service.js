@@ -2,17 +2,24 @@ const {
     loadPriceFile,
     parsePriceData
 } = require("../lib/fileParser");
+const sortHousePriceData = require("../lib/sortHousePriceData");
+const {
+    calculatePercentile
+} = require("../lib/calculatePercentile");
 
 const priceServiceFactory = (dependencies) => async (filePath) => {
     const {
         loadPriceFile,
-        parsePriceData
+        parsePriceData,
+        sortHousePriceData,
+        calculatePercentile
     } = dependencies;
 
     try {
-        let file = await loadPriceFile(filePath);
-        let parsedFile = parsePriceData(file);
-        return parsedFile;
+        const file = await loadPriceFile(filePath);
+        const parsedFile = parsePriceData(file);
+        const housePricesWithPercentile = calculatePercentile(sortHousePriceData, parsedFile);
+        return housePricesWithPercentile;
     } catch (err) {
         console.log(err);
         throw new Error(err);
@@ -21,7 +28,9 @@ const priceServiceFactory = (dependencies) => async (filePath) => {
 
 const housePriceService = priceServiceFactory({
     loadPriceFile,
-    parsePriceData
+    parsePriceData,
+    sortHousePriceData,
+    calculatePercentile
 });
 
 module.exports = {

@@ -11,11 +11,11 @@ const loadPriceFile = (filepath) => {
     });
 };
 
-
 const parsePriceData = (content) =>
-    content.length > 0 && content.split(/\r?\n/).map(priceLineToObject);
+    content.length > 0 && content.split(/\n/).map(priceLineToObject);
 
 const priceLineToObject = line => {
+    if (line.length === 0) return;
     let [x, y, price] = line.split(" ");
     return {
         x: parseInt(x),
