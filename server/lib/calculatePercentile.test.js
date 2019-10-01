@@ -117,10 +117,8 @@ const expected = [{
     }
 ];
 
-const sortFunctionMock = jest.fn(array => sortedData);
-
 test("Returns sorted array with correct percentiles", () => {
-
+    const sortFunctionMock = jest.fn(array => sortedData);
     expect(calculatePercentile(sortFunctionMock, sortedData)).toStrictEqual(expected);
 });
 

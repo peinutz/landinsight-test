@@ -2,7 +2,7 @@
   <div class="container">
     <h2>LandInsight Test</h2>
     <div class="box">
-      <Square v-for="(square, index) in grid" v-bind:key="index" :x="square.x" :y="square.y" />
+      <Square v-for="(square, index) in grid" v-bind:key="index" />
     </div>
   </div>
 </template>
@@ -19,6 +19,12 @@ export default {
       grid: []
     };
   },
+  props: {
+    priceMap: {
+      type: Array,
+      default: () => []
+    }
+  },
   methods: {
     generateGrid() {
       let grid = [];
@@ -28,6 +34,9 @@ export default {
         }
       }
       return grid;
+    },
+    findHouseData(x, y) {
+      return this.priceMap.find(house => house.x === x && house.y === y);
     }
   },
   created() {
@@ -36,7 +45,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .box {
   display: flex;

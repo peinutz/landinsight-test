@@ -1,18 +1,16 @@
 <template >
-  <div class="square" :data-x="x" :data-y="y"></div>
+  <div></div>
 </template>
 
 <script>
 export default {
   name: "Square",
   props: {
-    x: Number,
-    y: Number
+    house: Object
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .square {
   width: 5px;
