@@ -1,7 +1,7 @@
 const {
-    calculatePercentile,
+    getMapWithPercentiles,
     percentile
-} = require("./calculatePercentile");
+} = require("./getMapWithPercentiles");
 
 const sortedData = [{
         x: 1,
@@ -119,7 +119,7 @@ const expected = [{
 
 test("Returns sorted array with correct percentiles", () => {
     const sortFunctionMock = jest.fn(array => sortedData);
-    expect(calculatePercentile(sortFunctionMock, sortedData)).toStrictEqual(expected);
+    expect(getMapWithPercentiles(sortFunctionMock, sortedData)).toStrictEqual(expected);
 });
 
 test("Calculates percentile correctly", () => {

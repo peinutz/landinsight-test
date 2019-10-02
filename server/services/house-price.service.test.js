@@ -1,16 +1,23 @@
 const {
-    housePriceService
+    priceServiceFactory
 } = require("./house-price.service");
+const {
+    parsePriceData
+} = require("../lib/fileParser");
+const sortHousePriceData = require("../lib/sortHousePriceData");
+const {
+    getMapWithPercentiles
+} = require("../lib/getMapWithPercentiles");
 
 const loadedTestData = `1 1 1
 2 2 2
 3 3 3
+6 6 6
 4 4 4
 5 5 5
-6 6 6
 7 7 7
-8 8 8
 9 9 9
+8 8 8
 10 10 10`;
 
 const expected = [{
@@ -74,3 +81,19 @@ const expected = [{
         percentile: 100
     }
 ];
+
+describe("House price service", () => {
+    test("returns ordered price map with percentiles correctly", async () => {
+        const loadPriceFile = jest.fn((filePath) => Promise.resolve(loadedTestData));
+        const housePriceService = priceServiceFactory({
+            loadPriceFile,
+            parsePriceData,
+            sortHousePriceData,
+            getMapWithPercentiles
+        });
+
+        const priceMap = await housePriceService("");
+
+        expect(priceMap).toStrictEqual(expected);
+    });
+})

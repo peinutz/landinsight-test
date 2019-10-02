@@ -1,6 +1,6 @@
 const percentile = (position, numberOfElements) => (position / numberOfElements) * 100;
 
-const calculatePercentile = (sortFunction, priceData) => {
+const getMapWithPercentiles = (sortFunction, priceData) => {
     return sortFunction(priceData).map((curr, index, array) => {
         return {
             ...curr,
@@ -10,6 +10,6 @@ const calculatePercentile = (sortFunction, priceData) => {
 }
 
 module.exports = {
-    calculatePercentile,
+    getMapWithPercentiles,
     percentile
 };

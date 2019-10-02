@@ -3,6 +3,4 @@ const sortHousePriceData = ([...priceData]) => {
     return priceData;
 };
 
-
-
 module.exports = sortHousePriceData;

@@ -1,18 +1,23 @@
 <template >
   <div class="container">
-    <h2>LandInsight Test</h2>
     <div class="box">
-      <Square v-for="(square, index) in grid" v-bind:key="index" />
+      <House
+        v-for="(square, index) in grid"
+        v-bind:key="index"
+        :house="findHouseDataInPriceMap(square.x, square.y)"
+        :x="square.x"
+        :y="square.y"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Square from "./Square";
+import House from "./House";
 export default {
   name: "Map",
   components: {
-    Square
+    House
   },
   data: function() {
     return {
@@ -23,19 +28,21 @@ export default {
     priceMap: {
       type: Array,
       default: () => []
-    }
+    },
+    x: Number,
+    y: Number
   },
   methods: {
     generateGrid() {
       let grid = [];
       for (let i = 0; i < 100; i++) {
         for (let j = 0; j < 100; j++) {
-          grid.push({ x: i, y: j });
+          grid.push({ x: j, y: i });
         }
       }
       return grid;
     },
-    findHouseData(x, y) {
+    findHouseDataInPriceMap(x, y) {
       return this.priceMap.find(house => house.x === x && house.y === y);
     }
   },

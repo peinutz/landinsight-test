@@ -7,6 +7,7 @@ const {
 
 const app = express();
 
+app.use(cors());
 const FILE_PATH = "./sold-price-data.txt";
 
 //middleware
@@ -14,7 +15,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(cors());
 app.use(bodyParser.json());
 
 app.get("/getHousePrices", async (req, res, next) => {
