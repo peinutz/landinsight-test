@@ -1,13 +1,12 @@
 <template>
   <div id="app">
     <div class="container">
-    <h2>LandInsight Test</h2>
-    <div v-if="loading">Loading...</div>
-    <div v-else>
+      <h2>LandInsight Test</h2>
+      <div v-if="loading">Loading...</div>
+      <div v-else>
         <div v-if="error">Ooops something went wrong!</div>
-        <Map v-else :priceMap="priceMap"/>
-    </div>
-
+        <Map v-else :priceMap="priceMap" />
+      </div>
     </div>
   </div>
 </template>
@@ -31,12 +30,11 @@ export default {
   methods: {
     async fetchPriceMap() {
       try {
-        const response = await axios.get("http://localhost:3000/getHousePrices");
+        const response = await axios.get("/api/getHousePrices");
         this.priceMap = response.data;
         this.loading = false;
       } catch (err) {
-        error = true;
-        console.log(err);
+        this.error = true;
       }
     }
   },
